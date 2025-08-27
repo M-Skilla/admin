@@ -9,7 +9,8 @@ import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Campus Connnect Admin",
-  description: "Created by group",
+  description:
+    "A powerful admin dashboard for managing data for the CampusConnect android application.",
   generator: "org.group",
 };
 
