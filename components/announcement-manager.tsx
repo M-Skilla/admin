@@ -532,10 +532,12 @@ export function AnnouncementManager() {
                     <CardTitle className="text-lg">
                       {announcement.title}
                     </CardTitle>
-                    <CardDescription>
-                      {announcement.department} • {announcement.author.name} (
-                      {announcement.author.college.name})
-                    </CardDescription>
+                    {announcement.author && (
+                      <CardDescription>
+                        {announcement.department} • {announcement.author.name} (
+                        {announcement.author.college.name})
+                      </CardDescription>
+                    )}
                   </div>
                   <div className="flex gap-2">
                     <Button
@@ -565,26 +567,31 @@ export function AnnouncementManager() {
                   announcement.imageUrls.length > 0 && (
                     <div className="mb-3">
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                        {announcement.imageUrls.map((url, index) => (
-                          <div key={index} className="relative">
-                            <img
-                              src={url}
-                              alt={`Announcement image ${index + 1}`}
-                              className="w-full h-32 object-cover rounded border cursor-pointer hover:opacity-80 transition-opacity"
-                              onClick={() => window.open(url, "_blank")}
-                            />
-                            <div className="absolute top-1 left-1 bg-black/50 text-white text-xs px-1 py-0.5 rounded flex items-center gap-1">
-                              <Image className="h-3 w-3" />
-                              {index + 1}
-                            </div>
-                          </div>
-                        ))}
+                        {announcement.imageUrls.map((url, index) => {
+                          if (url !== "") {
+                            return (
+                              <div key={index} className="relative">
+                                <img
+                                  src={url}
+                                  alt={`Announcement image ${index + 1}`}
+                                  className="w-full h-32 object-cover rounded border cursor-pointer hover:opacity-80 transition-opacity"
+                                  onClick={() => window.open(url, "_blank")}
+                                />
+                                <div className="absolute top-1 left-1 bg-black/50 text-white text-xs px-1 py-0.5 rounded flex items-center gap-1">
+                                  <Image className="h-3 w-3" />
+                                  {index + 1}
+                                </div>
+                              </div>
+                            );
+                          }
+                        })}
                       </div>
                     </div>
                   )}
 
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {announcement.author.roles &&
+                  {announcement.author &&
+                    announcement.author.roles &&
                     announcement.author.roles.map((role) => (
                       <Badge key={role} variant="secondary">
                         {role}
