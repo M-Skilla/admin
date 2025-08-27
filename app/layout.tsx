@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Campus Connnect Admin",
@@ -37,6 +38,7 @@ html {
         >
           <Navigation />
           {children}
+          <Analytics />
           <Toaster />
         </ThemeProvider>
       </body>
