@@ -14,6 +14,8 @@ export async function GET() {
       createdAt: doc.data().createdAt.toDate(),
     }));
 
+    console.log("Get Annnoucement:", announcements);
+
     return NextResponse.json(announcements);
   } catch (error) {
     console.error("Error fetching announcements:", error);
@@ -40,6 +42,7 @@ export async function POST(request: NextRequest) {
         roles: data.roles
           ? data.roles.split(",").map((role: string) => role.trim())
           : [],
+        profilePicUrl: data.profilePicUrl,
       },
       body: data.body,
       createdAt: new Date(),
@@ -50,6 +53,8 @@ export async function POST(request: NextRequest) {
         : [],
       imageUrls: data.imageUrls || [],
     };
+
+    console.log(announcement);
 
     const docRef = await db.collection("announcement").add(announcement);
 

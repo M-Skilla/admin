@@ -30,6 +30,7 @@ export interface Author {
   id: string;
   name: string;
   roles: string[];
+  profilePicUrl: string;
 }
 
 export interface Announcement {
@@ -55,6 +56,7 @@ export interface AnnouncementFormData {
   title: string;
   visibility: string;
   imageUrls?: string[];
+  profilePicUrl: string;
 }
 
 export interface CollegeFormData {

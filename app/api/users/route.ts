@@ -11,6 +11,7 @@ export async function GET() {
 
     const users = usersSnapshot.docs.map((doc) => {
       const data = doc.data();
+      console.log(data);
       return {
         id: doc.id,
         name: data.fullName,

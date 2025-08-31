@@ -49,6 +49,7 @@ export function AnnouncementManager() {
     title: "",
     visibility: "",
     imageUrls: [],
+    profilePicUrl: "",
   });
 
   useEffect(() => {
@@ -86,6 +87,7 @@ export function AnnouncementManager() {
 
   const handleAuthorSelect = (authorId: string) => {
     const selectedUser = users.find((user) => user.id === authorId);
+    console.log("Profile Pic Url:", selectedUser);
     if (selectedUser) {
       setFormData({
         ...formData,
@@ -94,6 +96,7 @@ export function AnnouncementManager() {
         collegeId: selectedUser.college.id,
         collegeAbbrv: selectedUser.college.abbrv,
         collegeName: selectedUser.college.name,
+        profilePicUrl: selectedUser.profilePicUrl,
       });
     }
   };
@@ -217,6 +220,7 @@ export function AnnouncementManager() {
       title: announcement.title,
       visibility: announcement.visibility.join(", "),
       imageUrls: announcement.imageUrls || [],
+      profilePicUrl: announcement.author.profilePicUrl,
     });
     setEditingId(announcement.id!);
     setShowForm(true);
@@ -261,6 +265,7 @@ export function AnnouncementManager() {
       title: "",
       visibility: "",
       imageUrls: [],
+      profilePicUrl: "",
     });
     setSelectedImages([]);
     setEditingId(null);
